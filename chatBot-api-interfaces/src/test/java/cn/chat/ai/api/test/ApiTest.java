@@ -40,13 +40,13 @@ public class ApiTest {
     @Test
     public void answer() throws IOException {
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
-        HttpPost post = new HttpPost("https://api.zsxq.com/v2/topics/181454588811482/answer");
+        HttpPost post = new HttpPost("https://api.zsxq.com/v2/topics/584515525858114/answer");
         post.addHeader("cookie","zsxq_access_token=D779482E-FB3F-B9F3-0E72-C85F5B039E3E_35DE15DC136A90F2; abtest_env=product; zsxqsessionid=6ada0bb2af31f8cc695f3fab61873000");
         post.addHeader("content-Type","application/json;charset=utf8");
 
         String paramJSON = "{\n" +
                 "  \"req_data\": {\n" +
-                "    \"text\": \"测试1\\n\",\n" +
+                "    \"text\": \"测试2\\n\",\n" +
                 "    \"image_ids\": [],\n" +
                 "    \"silenced\": false\n" +
                 "  }\n" +
