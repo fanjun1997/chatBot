@@ -77,6 +77,6 @@ public class ZsxqApi implements IZsxqApi {
             System.out.println(response.getStatusLine().getStatusCode());
         }
 
-        return ;
+        return false;
     }
 }
