@@ -1,6 +1,6 @@
 package cn.chat.ai.api.domain.zsxq;
 
-import cn.chat.ai.api.domain.zsxq.model.aggregates.UnAnsweredQuestionAggregates;
+import cn.chat.ai.api.domain.zsxq.model.aggregates.UnAnsweredQuestionsAggregates;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
  * @data 2023/4/3 23:16
  */
 public interface IZsxqApi {
-    UnAnsweredQuestionAggregates queryUnAnsweredQuestionsTopicId(String groupId, String cookie) throws IOException;
+    UnAnsweredQuestionsAggregates queryUnAnsweredQuestionsTopicId(String groupId, String cookie) throws IOException;
 
     boolean answer(String groupID, String cookie, String topicID, String text, boolean silenced) throws IOException;
 }

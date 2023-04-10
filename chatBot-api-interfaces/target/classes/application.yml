@@ -1,2 +1,8 @@
+#谨记，在配置这个文件的时候，要在冒号后面加一个空格，不然就会出错
 server:
   port: 8090
+
+chatBot-api:
+  groupId: 88885824448182
+  cookie: zsxqsessionid=1a0558c6a5d0aa47f4829fab1c8c3fe9; UM_distinctid=18745a350cb4a4-0bf734db444f08-977173c-1fa400-18745a350ccd8f; amp_fef1e8=b7026c36-6baa-4ef4-aafc-93ceec148f5eR...1gt371ptl.1gt371ptt.1.1.2; zsxq_access_token=3AC20246-64C1-54D1-D8DC-9CC58B27B8BD_35DE15DC136A90F2; sensorsdata2015jssdkcross={"distinct_id":"418585128422548","first_id":"1874773fcdd434-003a392b796ee5f2-7a545474-2073600-1874773fcdef30","props":{},"identities":"eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMTg3NDc3M2ZjZGQ0MzQtMDAzYTM5MmI3OTZlZTVmMi03YTU0NTQ3NC0yMDczNjAwLTE4NzQ3NzNmY2RlZjMwIiwiJGlkZW50aXR5X2xvZ2luX2lkIjoiNDE4NTg1MTI4NDIyNTQ4In0=","history_login_id":{"name":"$identity_login_id","value":"418585128422548"},"$device_id":"1874773fcdd434-003a392b796ee5f2-7a545474-2073600-1874773fcdef30"}; abtest_env=product
+  OpenAiKey: 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

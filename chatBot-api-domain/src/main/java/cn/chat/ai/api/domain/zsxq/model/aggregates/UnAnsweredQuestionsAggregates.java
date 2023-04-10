@@ -8,7 +8,7 @@ import cn.chat.ai.api.domain.zsxq.model.res.RespData;
  * @description 未回答问题的聚合信息
  * @data 2023/4/3 23:44
  */
-public class UnAnsweredQuestionAggregates {
+public class UnAnsweredQuestionsAggregates {
 
     private boolean succeeded;
     private RespData resp_data;
@@ -28,4 +28,5 @@ public class UnAnsweredQuestionAggregates {
     public void setResp_data(RespData resp_data) {
         this.resp_data = resp_data;
     }
+
 }

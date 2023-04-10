@@ -1,9 +1,10 @@
 package cn.chat.ai.api.domain.zsxq.service;
 
 import cn.chat.ai.api.domain.zsxq.IZsxqApi;
-import cn.chat.ai.api.domain.zsxq.model.aggregates.UnAnsweredQuestionAggregates;
+import cn.chat.ai.api.domain.zsxq.model.aggregates.UnAnsweredQuestionsAggregates;
 import cn.chat.ai.api.domain.zsxq.model.req.AnswerReq;
 import cn.chat.ai.api.domain.zsxq.model.req.ReqData;
+import cn.chat.ai.api.domain.zsxq.model.res.AnswerRes;
 import com.alibaba.fastjson.JSON;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpStatus;
@@ -17,6 +18,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
@@ -26,11 +28,12 @@ import java.io.IOException;
  * @description
  * @data 2023/4/3 23:53
  */
+@Service
 public class ZsxqApi implements IZsxqApi {
 
     private Logger logger = LoggerFactory.getLogger(ZsxqApi.class);
     @Override
-    public UnAnsweredQuestionAggregates queryUnAnsweredQuestionsTopicId(String groupId, String cookie) throws IOException {
+    public UnAnsweredQuestionsAggregates queryUnAnsweredQuestionsTopicId(String groupId, String cookie) throws IOException {
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 
         HttpGet get = new HttpGet("https://api.zsxq.com/v2/groups/"+groupId+"/topics?scope=unanswered_questions&count=20");
@@ -40,7 +43,8 @@ public class ZsxqApi implements IZsxqApi {
         CloseableHttpResponse response = httpClient.execute(get);
         if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
             String jsonStr = EntityUtils.toString(response.getEntity());
-            return JSON.parseObject(jsonStr, UnAnsweredQuestionAggregates.class);
+            logger.info("拉取提问数据， groupId: {},  jsonStr:{}",groupId, jsonStr);
+            return JSON.parseObject(jsonStr, UnAnsweredQuestionsAggregates.class);
         }else{
             throw new RuntimeException("queryUnAnswerQuestionsTopic Err Code is" + response.getStatusLine().getStatusCode());
         }
@@ -71,12 +75,13 @@ public class ZsxqApi implements IZsxqApi {
 
         CloseableHttpResponse response = httpClient.execute(post);
         if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
-            String res = EntityUtils.toString(response.getEntity());
-            System.out.println(res);
+            String jsonStr = EntityUtils.toString(response.getEntity());
+            logger.info("回答问题结果， groupId: {}, Uid：{}， jsonStr:{}",groupID, topicID, jsonStr);
+            AnswerRes answerRes = JSON.parseObject(jsonStr, AnswerRes.class);
+            return answerRes.isSucceeded();
         }else{
-            System.out.println(response.getStatusLine().getStatusCode());
+            throw new RuntimeException("answer Err code is:"+response.getStatusLine().getStatusCode());
         }
 
-        return false;
     }
 }
